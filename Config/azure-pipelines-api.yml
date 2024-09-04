@@ -6,9 +6,9 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  azureSubscription: 'serviceconnection-arp'
-  appServiceName: 'app-arp-linux-westeu-001'
-  resourceGroupName: 'rg-arp-westeu-001'
+  azureSubscription: 'serviceconnection'
+  appServiceName: 'app-ARP-westeu'
+  resourceGroupName: 'rg-ARP-westeu'
   projectName: 'AzureResourceProbes.API'
 
 steps:
@@ -26,21 +26,21 @@ steps:
       projects: '**/$(projectName).csproj'
 
   - task: DotNetCoreCLI@2
-    displayName: 'Compilar la aplicación'
+    displayName: 'Compilar la aplicaciÃ³n'
     inputs:
       command: 'build'
       projects: '**/$(projectName).csproj'
       arguments: '--configuration $(buildConfiguration)'
 
   - task: DotNetCoreCLI@2
-    displayName: 'Publicar la aplicación'
+    displayName: 'Publicar la aplicaciÃ³n'
     inputs:
       command: 'publish'
       projects: '**/$(projectName).csproj'
       arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
 
   - task: PublishBuildArtifacts@1
-    displayName: 'Publicar artefactos de compilación'
+    displayName: 'Publicar artefactos de compilaciÃ³n'
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       ArtifactName: 'drop'
